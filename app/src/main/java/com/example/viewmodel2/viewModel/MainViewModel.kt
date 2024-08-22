@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.viewmodel2.api.MyApi
 import com.example.viewmodel2.api.RetrofitWork
+import com.example.viewmodel2.mdoel.Post
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 
@@ -22,6 +23,9 @@ class MainViewModel : ViewModel() {
     val liveWord2 : LiveData<String>
         get() = _mutableWord2
 
+    private var _mutableWordList = MutableLiveData<List<Post>>()
+    val liveWordList : LiveData<List<Post>>
+        get() = _mutableWordList
     fun getPost1() = viewModelScope.launch{
         val post = retrofitInstance.getPost1()
         _mutableWord1.value = post.title
@@ -31,4 +35,12 @@ class MainViewModel : ViewModel() {
         val post = retrofitInstance.getPostNumber(number)
         _mutableWord2.value = post.title
     }
+
+
+    fun getPostAll() = viewModelScope.launch {
+        val postAll = retrofitInstance.getPostAll()
+        _mutableWordList.value = postAll
+    }
+
+
 }
