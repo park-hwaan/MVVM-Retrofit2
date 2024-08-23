@@ -19,6 +19,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
+        val customAdapter = CustomAdapter()
+        binding.recycle.adapter = customAdapter
+        binding.recycle.layoutManager = LinearLayoutManager(this)
+
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         viewModel.getPost1()
         viewModel.getPostNumber(2)
@@ -33,10 +37,8 @@ class MainActivity : AppCompatActivity() {
         })
 
         // retrofit2으로 불러온 데이터들을 리싸이클러뷰에 연결
+        // observe는 실시간으로 이벤트를 감지해서 view에 반영
         viewModel.liveWordList.observe(this, Observer {
-            val customAdapter = CustomAdapter()
-            binding.recycle.adapter = customAdapter
-            binding.recycle.layoutManager = LinearLayoutManager(this)
             customAdapter.setList(it)
 
         })
