@@ -8,6 +8,7 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+
         <TextView
             android:id="@+id/area1"
             android:text="area1"
