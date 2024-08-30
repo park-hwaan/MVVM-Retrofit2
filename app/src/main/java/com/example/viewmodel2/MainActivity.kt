@@ -15,6 +15,7 @@ import androidx.work.workDataOf
 import com.example.viewmodel2.databinding.ActivityMainBinding
 import com.example.viewmodel2.viewModel.MainViewModel
 import com.example.viewmodel2.workManager.WorkManagerA
+import com.example.viewmodel2.workManager.WorkManagerB
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -35,7 +36,9 @@ class MainActivity : AppCompatActivity() {
 
         //WorkManager builder,       데이터를 담아서 실행 클래스에 넘겨주고 싶으면 setInputData를 사용하면 됨
         val workManagerA = OneTimeWorkRequestBuilder<WorkManagerA>().setInputData(myData).build()
+        val workManagerB = OneTimeWorkRequestBuilder<WorkManagerB>().build()
         WorkManager.getInstance(this).enqueue(workManagerA)
+        WorkManager.getInstance(this).enqueue(workManagerB)
 
         // workManager 실행 완료후 데이터를 받아오는 방법
         WorkManager.getInstance(this).getWorkInfoByIdLiveData(workManagerA.id).observe(this,
