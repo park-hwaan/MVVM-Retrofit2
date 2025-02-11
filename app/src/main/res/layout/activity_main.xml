@@ -12,12 +12,14 @@
         <TextView
             android:id="@+id/area1"
             android:text="area1"
+            android:transitionName="text1"
             android:textSize="50sp"
             android:layout_width="wrap_content"
             android:layout_height="60dp"/>
         <TextView
             android:id="@+id/area2"
             android:text="area2"
+            android:transitionName="text2"
             android:textSize="50sp"
             android:layout_width="wrap_content"
             android:layout_height="60dp"/>

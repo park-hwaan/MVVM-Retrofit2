@@ -24,8 +24,7 @@ class MainViewModel : ViewModel() {
         get() = _mutableWord2
 
     private var _mutableWordList = MutableLiveData<List<Post>>()
-    val liveWordList : LiveData<List<Post>>
-        get() = _mutableWordList
+    val liveWordList : LiveData<List<Post>> get() = _mutableWordList
 
     fun getPost1() = viewModelScope.launch(Dispatchers.IO){
         val post = repository.getPost1()
